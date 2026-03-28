@@ -6,7 +6,7 @@ const AddForm = () => {
     const [descripcion, setDescripcion] = useState("")
     const [importe, setImporte] = useState(0)
 
-    const {addGasto, error} = useContext(GlobalContext)
+    const {addGasto} = useContext(GlobalContext)
 
     const onSubmit = (e) => {
         e.preventDefault()
@@ -47,11 +47,15 @@ const AddForm = () => {
                         onChange={(e)=>setImporte(e.target.value)}
                     />
                 </div>
-                <button type='submit' className='btn'>Agregar Gastos</button>
+                <button className='btn'>Agregar Gastos</button>
             </form>
-            {error ? <p>{error}</p> : null}
         </>
     )
+
+
+  return (
+    <div>AddForm</div>
+  )
 }
 
 export default AddForm

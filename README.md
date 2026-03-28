@@ -1,37 +1,16 @@
-# Calculadora (Frontend)
+# React + Vite
 
-Frontend en React + Vite para registrar movimientos (ingresos/egresos) y calcular balance.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Requisitos
+Currently, two official plugins are available:
 
-- Node.js 18+
-- Una API propia (diferente a la de otra persona) con los endpoints de gastos.
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Variables de entorno
+## React Compiler
 
-Este proyecto toma la URL de la API desde `VITE_API_URL`.
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-- Local: crea un `.env` basado en `.env.example`
-- En tu hosting: configura `VITE_API_URL` como variable de entorno
+## Expanding the ESLint configuration
 
-## Correr en local
-
-1) Instalar dependencias:
-
-`npm install`
-
-2) Crear `.env` (ejemplo):
-
-`VITE_API_URL=http://localhost:4000/api/gastos`
-
-3) Ejecutar:
-
-`npm run dev`
-
-## API esperada
-
-La app consume:
-
-- `GET    /api/gastos` → lista de gastos (cada item debe traer `_id`, `descripcion`, `importe`)
-- `POST   /api/gastos` → crea gasto (body JSON `{ descripcion, importe }`)
-- `DELETE /api/gastos/:id` → elimina gasto
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.

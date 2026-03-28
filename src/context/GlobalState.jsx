@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import React, {createContext, useReducer, useEffect} from 'react'
 import AppReducer from './AppReducer'
 
@@ -9,8 +8,8 @@ const initialState = {
     error:null
 }
 
-// URL de nuestra API (configurable por entorno)
-const API_URL = import.meta.env.VITE_API_URL || 'http://localhost:4001/api/gastos'
+//URL de nuestra api
+const API_URL = 'https://calculadora-159f.onrender.com/api/gastos'
 
 
 //Creamos el contexto
@@ -31,20 +30,11 @@ export const GlobalProvider = ({children}) => {
             const response = await fetch(`${API_URL}`, {
                 method: 'GET'
             })
-
-            if (!response.ok) {
-                throw new Error(`Error al cargar gastos (${response.status})`)
-            }
             const data = await response.json()
-
-            const gastos = Array.isArray(data) ? data : (data?.gastos ?? data?.data)
-            if (!Array.isArray(gastos)) {
-                throw new Error('Respuesta inválida: se esperaba un arreglo de gastos')
-            }
 
             dispatch({
                 type: 'GET_GASTOS',
-                payload: gastos
+                payload: data
             })
 
         } catch (error) {
@@ -58,13 +48,9 @@ export const GlobalProvider = ({children}) => {
 
     async function deleteGasto(id) {
         try {
-            const response = await fetch(`${API_URL}/${id}`,{
+            await fetch(`${API_URL}/${id}`,{
                 method: 'DELETE'
             })
-
-            if (!response.ok) {
-                throw new Error(`Error al eliminar gasto (${response.status})`)
-            }
 
             dispatch({
                 type: 'DELETE_GASTO',
@@ -89,17 +75,11 @@ export const GlobalProvider = ({children}) => {
                 body: JSON.stringify(gasto)
             })
 
-            if (!response.ok) {
-                throw new Error(`Error al agregar gasto (${response.status})`)
-            }
-
             const data = await response.json()
-
-            const created = data?.gasto ?? data?.data ?? data
 
             dispatch({
                 type: "ADD_GASTO", 
-                payload: created
+                payload: data
             })
         } catch (error) {
             dispatch({
