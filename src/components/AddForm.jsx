@@ -51,11 +51,6 @@ const AddForm = () => {
             </form>
         </>
     )
-
-
-  return (
-    <div>AddForm</div>
-  )
 }
 
 export default AddForm

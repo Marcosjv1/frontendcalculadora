@@ -1,3 +1,4 @@
+/* eslint-disable react-refresh/only-export-components */
 import React, {createContext, useReducer, useEffect} from 'react'
 import AppReducer from './AppReducer'
 
@@ -8,8 +9,9 @@ const initialState = {
     error:null
 }
 
-//URL de nuestra api
-const API_URL = 'https://calculadora-159f.onrender.com/api/gastos'
+// URL de tu API (configurable por entorno)
+// Crea un archivo .env con: VITE_API_URL=https://tu-api.com/api/gastos
+const API_URL = import.meta.env.VITE_API_URL || 'https://calculadora-159f.onrender.com/api/gastos'
 
 
 //Creamos el contexto
@@ -18,11 +20,6 @@ export const GlobalContext = createContext(initialState)
 //Creamos el provider
 export const GlobalProvider = ({children}) => {
     const [state, dispatch] = useReducer(AppReducer, initialState)
-
-    //Cargar los datos al iniciar la app
-    useEffect(()=> {
-        getGastos()
-    },[])
 
     //Actions
     async function getGastos(){
@@ -44,6 +41,11 @@ export const GlobalProvider = ({children}) => {
             })
         }
     }
+
+    //Cargar los datos al iniciar la app
+    useEffect(()=> {
+        getGastos()
+    },[])
 
 
     async function deleteGasto(id) {
