@@ -10,7 +10,7 @@ const AppReducer = (state, action) => {
             return{
                 ...state,
                 loading:false,
-                gastos: state.gastos.filter(gasto => gasto._id !== action.payload)
+                gastos: state.gastos.filter(gasto => (gasto._id ?? gasto.id) !== action.payload)
             }
         case 'ADD_GASTO':
             return{
@@ -24,6 +24,9 @@ const AppReducer = (state, action) => {
                 loading:false,
                 error: action.payload
             }
+
+        default:
+            return state
 
     }
 }

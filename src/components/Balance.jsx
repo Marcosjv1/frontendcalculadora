@@ -6,7 +6,6 @@ const Balance = () => {
 
     //Obtener todos los importes de la lista de gastos
     const importes = gastos.map(gasto => gasto.importe)
-    console.log(importes)
 
     //Calculamos nuestro saldo
     const total = importes.reduce((acc, item)=>(acc += item), 0).toFixed(2)

@@ -11,7 +11,7 @@ const GastosLista = () => {
         <h3>Gastos</h3>
         <ul className='list'>
             {gastos.map(gasto => (
-                <Gasto key={gasto._id} gasto={gasto} />
+            <Gasto key={gasto._id ?? gasto.id} gasto={gasto} />
             ))}
         </ul>
     </>

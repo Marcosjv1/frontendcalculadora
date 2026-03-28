@@ -1,0 +1,4 @@
+{
+  "/api/gastos": "/gastos",
+  "/api/gastos/:id": "/gastos/:id"
+}
